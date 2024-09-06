@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "482268046781",
+    "project_id": "nipponxjapondemo",
+    "storage_bucket": "nipponxjapondemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482268046781:android:ad436ff8fdab8119265ed4",
+        "android_client_info": {
+          "package_name": "com.nippon.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIQLzLhDW-ZwqydSYl2xhSz9DFCVCCw4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482268046781:android:4486ff7676c2bd66265ed4",
+        "android_client_info": {
+          "package_name": "com.proyec.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIQLzLhDW-ZwqydSYl2xhSz9DFCVCCw4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
