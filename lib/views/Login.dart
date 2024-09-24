@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proyecto_turismo/utils/auth.dart';
-import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:flutter/services.dart';
 import 'package:proyecto_turismo/views/Registro.dart';
@@ -65,7 +64,7 @@ class _LoginSate extends State<Login> {
                 ),
               ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 180),
             Container(
               height: 220,
               width: 385,

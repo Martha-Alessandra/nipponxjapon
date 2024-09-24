@@ -1,33 +1,19 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:proyecto_turismo/services/Firebase_selectImage.dart';
-import 'package:proyecto_turismo/services/firebase_uploadImage.dart';
+import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:proyecto_turismo/views/Informaci%C3%B3n.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
-import 'package:proyecto_turismo/views/Migracion.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
-
-
-
-class GestionPagos extends StatefulWidget {
-  const GestionPagos({super.key});
-
-  @override
-  State<GestionPagos> createState() => _GestionPagosState();
-}
-
-class _GestionPagosState extends State<GestionPagos> {
-
-   File? imagen_to_upload;
-
-
+ 
+class Migracion extends StatelessWidget {
+ 
+const Migracion({Key? key}) : super(key: key);
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Gestión de Pagos', 
+          'Migración y Pasaporte', 
           style: TextStyle(
             color: Color(0xFFD30000),
             fontSize: 30,
@@ -60,13 +46,13 @@ class _GestionPagosState extends State<GestionPagos> {
             )
           );
         },
-        iconoSegundoMenu: Icons.edit_document, 
-        textoSegundoMenu: 'Migración y Pasaporte', 
+        iconoSegundoMenu: Icons.credit_card, 
+        textoSegundoMenu: 'Gestión de Pagos', 
         SegundoFuncionMenu: (){
           Navigator.push(
             context, 
             MaterialPageRoute(
-              builder: (context) => const Migracion()
+              builder: (context) => const GestionPagos()
             )
           );
         },
@@ -81,37 +67,9 @@ class _GestionPagosState extends State<GestionPagos> {
           );
         },
       ),
-      body: Column(
-        children: [
-          imagen_to_upload !=null ? Image.file(imagen_to_upload!) :
-          Container(
-            margin: const EdgeInsets.all(10),
-            height: 200,
-            width: double.infinity,
-            color: Colors.red,
-          ),
-          ElevatedButton(
-            onPressed: () async{
-              final imagen = await getImage();
-              setState(() {
-                imagen_to_upload = File(imagen!.path);
-              });
-            },
-             child : const Text("Seleccionar Imagen")
-             ),
-             
-          ElevatedButton(
-            onPressed: () async{
-              if(imagen_to_upload == null){
-                return;
+      body: const SingleChildScrollView(
 
-              }
-              final uploaded = await uploadImage(imagen_to_upload!);
-            }, child : const Text("Subir Imagen")
-            ),
-
-        ], 
-      )
+      ),
     );
   }
 }
