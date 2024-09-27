@@ -5,7 +5,7 @@ import 'package:proyecto_turismo/utils/auth.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:flutter/services.dart';
 import 'package:proyecto_turismo/views/Registro.dart';
-import 'package:proyecto_turismo/widgets/Buttons_Login';
+import 'package:proyecto_turismo/widgets/Buttons_Login.dart';
 import 'package:proyecto_turismo/widgets/Textfield_Login.dart';
 
 class Login extends StatefulWidget {
