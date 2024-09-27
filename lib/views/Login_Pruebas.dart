@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+/*import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
@@ -221,4 +221,4 @@ class _LoginState extends State<Login_Pruebas> {
       ),
     );
   }
-}
+}*/

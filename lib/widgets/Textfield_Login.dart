@@ -5,13 +5,15 @@ class TextfieldLogin extends StatelessWidget {
   final String hintText;
   final IconData icono;
   EdgeInsetsGeometry padding;
+  TextEditingController controller;
 
  
   TextfieldLogin({
     super.key,
     required this.hintText,
     required this.icono,
-    required this.padding
+    required this.padding,
+    required this.controller
   });
  
   @override
@@ -30,6 +32,7 @@ class TextfieldLogin extends StatelessWidget {
           ),
         ),
         child: TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             disabledBorder:InputBorder.none ,
