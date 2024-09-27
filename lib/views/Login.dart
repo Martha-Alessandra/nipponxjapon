@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:proyecto_turismo/utils/auth.dart';
-import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:flutter/services.dart';
 import 'package:proyecto_turismo/views/Registro.dart';
+import 'package:proyecto_turismo/widgets/Buttons_Login';
+import 'package:proyecto_turismo/widgets/Textfield_Login.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -65,7 +66,7 @@ class _LoginSate extends State<Login> {
                 ),
               ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 180),
             Container(
               height: 220,
               width: 385,
@@ -81,29 +82,108 @@ class _LoginSate extends State<Login> {
               ),
               child: Column(
                 children: [
-                  Padding(
+                  TextfieldLogin(
+                    hintText: 'Correo', 
+                    icono: Icons.mail, 
                     padding: const EdgeInsets.only(
-                        bottom: 3, top: 20, left: 28, right: 28),
-                    child: Container(
-                      height: 45,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF8E2BB),
-                        borderRadius: const BorderRadius.all(Radius.circular(9)),
-                        border: Border.all(
-                            color: const Color(0xFFF6DCAC), width: 1),
-                      ),
-                      child: TextField(
-                        controller: emailController, // Asociar el controlador
-                        decoration: const InputDecoration(
-                          hintText: 'Correo',
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.mail),
-                        ),
-                      ),
+                      bottom: 3, 
+                      top: 20, 
+                      left: 28, 
+                      right: 28
                     ),
+                    controller: emailController
                   ),
-                  Padding(
+                  TextfieldLogin(
+                    hintText: 'Contraseña', 
+                    icono: Icons.lock, 
+                    padding: const EdgeInsets.only(
+                      bottom: 2, 
+                      top: 5, 
+                      left: 28, 
+                      right: 28
+                    ),
+                    controller: passwordController
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 22,
+                      ),
+                      ButtonsLogin(
+                        texto: 'REGISTRARSE', 
+                        size: const Size(157, 42), 
+                        onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Registro()
+                              )
+                            );
+                          },
+                      ),
+                      Container(
+                        width: 15,
+                      ),
+                      ButtonsLogin(
+                        texto: 'INICIAR SESION', 
+                        size: const Size(157, 42), 
+                        onPressed: () async {
+                          if (emailController.text.isEmpty ||
+                          passwordController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                  Text('Por favor, complete todos los campos.'),
+                                duration: Duration(seconds: 3),
+                              ),
+                            );
+                            return;
+                          }
+
+                          String email = emailController.text.trim();
+                          String password = passwordController.text.trim();
+
+                          var result = await _authService
+                              .SignInEmailAndPassword(email, password);
+
+                          if (result == 1 || result == 2) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Error en el usuario o contraseña'),
+                                duration: Duration(seconds: 3),
+                              ),
+                            );
+                          } else if (result != null) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Itinerario()
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Ocurrió un error. Inténtalo nuevamente.'),
+                                duration: Duration(seconds: 3),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+                  /*Padding(
                     padding: const EdgeInsets.only(
                         bottom: 2, top: 5, left: 28, right: 28),
                     child: Container(
@@ -125,13 +205,33 @@ class _LoginSate extends State<Login> {
                         obscureText: true,
                       ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 39,
+                  ),*/
+
+
+                  /*Padding(
+                    padding: const EdgeInsets.only(
+                        bottom: 3, top: 20, left: 28, right: 28),
+                    child: Container(
+                      height: 45,
+                      width: 300,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF8E2BB),
+                        borderRadius: const BorderRadius.all(Radius.circular(9)),
+                        border: Border.all(
+                            color: const Color(0xFFF6DCAC), width: 1),
                       ),
-                      Padding(
+                      child: TextField(
+                        controller: emailController, // Asociar el controlador
+                        decoration: const InputDecoration(
+                          hintText: 'Correo',
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.mail),
+                        ),
+                      ),
+                    ),
+                  ),*/
+
+                  /*Padding(
                         padding: const EdgeInsets.only(
                           top: 12,
                           bottom: 1,
@@ -141,9 +241,11 @@ class _LoginSate extends State<Login> {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Registro()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Registro()
+                              )
+                            );
                           },
                           style: TextButton.styleFrom(
                               backgroundColor: const Color(0xFFEF762F),
@@ -151,16 +253,14 @@ class _LoginSate extends State<Login> {
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15.2),
-                              fixedSize: const Size(145, 42),
+                              fixedSize: const Size(157, 42),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12))),
                           child: const Text('REGISTRARSE'),
                         ),
-                      ),
-                      Container(
-                        width: 13,
-                      ),
-                      Padding(
+                      ),*/
+
+                      /*Padding(
                         padding: const EdgeInsets.only(
                           top: 12,
                           bottom: 1,
@@ -216,20 +316,9 @@ class _LoginSate extends State<Login> {
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15.2),
-                              fixedSize: const Size(140, 42),
+                              fixedSize: const Size(157, 42),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12))),
                           child: const Text('INICIAR SESION'),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                      ),*/
