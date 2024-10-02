@@ -5,7 +5,7 @@ import 'package:proyecto_turismo/utils/auth.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:flutter/services.dart';
 import 'package:proyecto_turismo/views/Registro.dart';
-import 'package:proyecto_turismo/widgets/Buttons_Login';
+import 'package:proyecto_turismo/widgets/Buttons_Login.dart';
 import 'package:proyecto_turismo/widgets/Textfield_Login.dart';
 
 class Login extends StatefulWidget {
@@ -91,7 +91,8 @@ class _LoginSate extends State<Login> {
                       left: 28, 
                       right: 28
                     ),
-                    controller: emailController
+                    controller: emailController,
+                    obscure: false,
                   ),
                   TextfieldLogin(
                     hintText: 'Contraseña', 
@@ -102,7 +103,8 @@ class _LoginSate extends State<Login> {
                       left: 28, 
                       right: 28
                     ),
-                    controller: passwordController
+                    controller: passwordController,
+                    obscure: true,
                   ),
                   Row(
                     children: [
@@ -124,51 +126,67 @@ class _LoginSate extends State<Login> {
                       Container(
                         width: 15,
                       ),
-                      ButtonsLogin(
-                        texto: 'INICIAR SESION', 
-                        size: const Size(157, 42), 
-                        onPressed: () async {
-                          if (emailController.text.isEmpty ||
-                          passwordController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content:
-                                  Text('Por favor, complete todos los campos.'),
-                                duration: Duration(seconds: 3),
-                              ),
-                            );
-                            return;
-                          }
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 12,
+                          bottom: 1,
+                          left: 1,
+                          right: 1,
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            if (emailController.text.isEmpty ||
+                                passwordController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text('Por favor, complete todos los campos.'),
+                                  duration: Duration(seconds: 3),
+                                ),
+                              );
+                              return;
+                            }
 
-                          String email = emailController.text.trim();
-                          String password = passwordController.text.trim();
+                            String email = emailController.text.trim();
+                            String password = passwordController.text.trim();
 
-                          var result = await _authService
-                              .SignInEmailAndPassword(email, password);
+                            var result = await _authService
+                                .SignInEmailAndPassword(email, password);
 
-                          if (result == 1 || result == 2) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Error en el usuario o contraseña'),
-                                duration: Duration(seconds: 3),
-                              ),
-                            );
-                          } else if (result != null) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Itinerario()
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Ocurrió un error. Inténtalo nuevamente.'),
-                                duration: Duration(seconds: 3),
-                              ),
-                            );
-                          }
-                        },
+                            if (result == 1 || result == 2) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Error en el usuario o contraseña'),
+                                  duration: Duration(seconds: 3),
+                                ),
+                              );
+                            } else if (result != null) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Itinerario()),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'Ocurrió un error. Inténtalo nuevamente.'),
+                                  duration: Duration(seconds: 3),
+                                ),
+                              );
+                            }
+                          },
+                          style: TextButton.styleFrom(
+                              backgroundColor: const Color(0xFFEF762F),
+                              foregroundColor: const Color(0xFFFFFFFF),
+                              textStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.2),
+                              fixedSize: const Size(157, 42),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12))),
+                          child: const Text('INICIAR SESION'),
+                        ),
                       ),
                     ],
                   )

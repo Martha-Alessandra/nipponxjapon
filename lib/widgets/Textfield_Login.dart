@@ -6,6 +6,7 @@ class TextfieldLogin extends StatelessWidget {
   final IconData icono;
   EdgeInsetsGeometry padding;
   TextEditingController controller;
+  bool obscure;
 
  
   TextfieldLogin({
@@ -13,7 +14,8 @@ class TextfieldLogin extends StatelessWidget {
     required this.hintText,
     required this.icono,
     required this.padding,
-    required this.controller
+    required this.controller,
+    required this.obscure
   });
  
   @override
@@ -43,6 +45,7 @@ class TextfieldLogin extends StatelessWidget {
               fontWeight: FontWeight.bold
             )*/
           ),
+          obscureText: obscure,
         ),
       ),
     );
