@@ -8,16 +8,19 @@ import 'package:proyecto_turismo/widgets/Divider.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:proyecto_turismo/widgets/Subtitles.dart';
 import 'package:proyecto_turismo/widgets/TarjetasActividades.dart';
- 
-class Itinerario extends StatelessWidget{
+import 'package:proyecto_turismo/views/VuelosView.dart';
+import 'package:proyecto_turismo/views/HospedajeView.dart';
+import 'package:proyecto_turismo/views/ActividadesView.dart';
+
+class Itinerario extends StatelessWidget {
   const Itinerario({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Itinerario', 
+          'Itinerario',
           style: TextStyle(
             color: Color(0xFFD30000),
             fontSize: 30,
@@ -40,96 +43,97 @@ class Itinerario extends StatelessWidget{
         ),
       ),
       drawer: Menudesplegable(
-        iconoPrimerMenu: Icons.credit_card,
-        textoPrimerMenu: 'Gestión de Pagos', 
-        PrimerFuncionMenu: (){
-          Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (context) => const GestionPagos()
-            )
-          );
-        }, 
-        iconoSegundoMenu: Icons.edit_document, 
-        textoSegundoMenu: 'Migración y Pasaporte', 
-        SegundoFuncionMenu: (){
-          Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (context) => const Migracion()
-            )
-          );
-        }, 
-        iconoTercerMenu: Icons.people, 
-        textoTercerMenu: 'Sobre Nosotros', 
-        TercerFuncionMenu: () {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (context) => const Informacion()
-            )
-          );
-        }
-      ),
+          iconoPrimerMenu: Icons.credit_card,
+          textoPrimerMenu: 'Gestión de Pagos',
+          PrimerFuncionMenu: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const GestionPagos()));
+          },
+          iconoSegundoMenu: Icons.edit_document,
+          textoSegundoMenu: 'Migración y Pasaporte',
+          SegundoFuncionMenu: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Migracion()));
+          },
+          iconoTercerMenu: Icons.people,
+          textoTercerMenu: 'Sobre Nosotros',
+          TercerFuncionMenu: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Informacion()));
+          }),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20,),
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-              ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    foregroundColor: Color(0xFF7D7D7D),
-                    //foregroundImage: AssetImage('assets/images/usr.png'),
-                  ),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Carlos Lopez',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14
-                        ),
-                      ),
-                      Text(
-                        'Próximo viajero',
-                        style: TextStyle(
-                          fontSize: 10
-                        ),  
-                      )
-                    ],
-                  )
-                ],
-              )
+            const SizedBox(
+              height: 20,
             ),
+            const Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                ),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 20,
+                      foregroundColor: Color(0xFF7D7D7D),
+                      //foregroundImage: AssetImage('assets/images/usr.png'),
+                    ),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Carlos Lopez',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                        Text(
+                          'Próximo viajero',
+                          style: TextStyle(fontSize: 10),
+                        )
+                      ],
+                    )
+                  ],
+                )),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Cardsitinerario(
-                  onTap: () {
-                    print('x');
-                  },
-                  text: 'Vuelos', 
-                  icono: Icons.airplanemode_active
-                ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const VuelosView() // Navega a la vista de Vuelos
+                            ),
+                      );
+                    },
+                    text: 'Vuelos',
+                    icono: Icons.airplanemode_active),
                 Cardsitinerario(
                   onTap: () {
-                    print('x');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const HospedajeView() // Navega a la vista de Hospedaje
+                          ),
+                    );
                   },
                   text: 'Hospedaje',
                   icono: Icons.home_work_outlined,
                 ),
                 Cardsitinerario(
                   onTap: () {
-                    print('x');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ActividadView() // Navega a la vista de Actividades
+                          ),
+                    );
                   },
                   text: 'Actividades',
                   icono: Icons.attractions,
@@ -137,35 +141,34 @@ class Itinerario extends StatelessWidget{
               ],
             ),
             const SizedBox(height: 20),
-            const Subtitulos(
-              subtitulo: 'Detalles del Viaje',
-              fontSize: 18
-            ),
+            const Subtitulos(subtitulo: 'Detalles del Viaje', fontSize: 18),
             const SizedBox(height: 7),
             const DetallesViaje(
-              imagenIcono: Icons.landscape, 
-              encabezado: 'Destino', 
+              imagenIcono: Icons.landscape,
+              encabezado: 'Destino',
               detalleViaje: 'Tokio',
             ),
             const Divisor(),
             const DetallesViaje(
-              imagenIcono: Icons.calendar_month_outlined, 
-              encabezado: 'Fechas', 
+              imagenIcono: Icons.calendar_month_outlined,
+              encabezado: 'Fechas',
               detalleViaje: 'Jun 15 -\n Jun 19',
             ),
             const Divisor(),
             const DetallesViaje(
-              imagenIcono: Icons.local_hotel, 
-              encabezado: 'Hospedaje', 
+              imagenIcono: Icons.local_hotel,
+              encabezado: 'Hospedaje',
               detalleViaje: 'Royal Japan',
             ),
             const Divisor(),
             const DetallesViaje(
-              imagenIcono: Icons.surfing_rounded, 
-              encabezado: 'Actividades Programadas', 
+              imagenIcono: Icons.surfing_rounded,
+              encabezado: 'Actividades Programadas',
               detalleViaje: 'Escalada \nVisita Guiada.',
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             const Subtitulos(
               subtitulo: 'Actividades del Día',
               fontSize: 18,
@@ -174,17 +177,15 @@ class Itinerario extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TarjetaActividades(
-                  etiqueta: 'Recomendado', 
-                  imagen: 'assets/images/montefuji2.jpg', 
-                  nombre: 'Monte Fuji', 
-                  duracion: '5 HRS'
-                ),
+                    etiqueta: 'Recomendado',
+                    imagen: 'assets/images/montefuji2.jpg',
+                    nombre: 'Monte Fuji',
+                    duracion: '5 HRS'),
                 TarjetaActividades(
-                  etiqueta: 'Novedad', 
-                  imagen: 'assets/images/towerjapan.jpg', 
-                  nombre: 'Torre de Tokio', 
-                  duracion: '2 HRS'
-                ),
+                    etiqueta: 'Novedad',
+                    imagen: 'assets/images/towerjapan.jpg',
+                    nombre: 'Torre de Tokio',
+                    duracion: '2 HRS'),
               ],
             )
           ],
