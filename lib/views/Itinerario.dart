@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
-import 'package:proyecto_turismo/views/Informaci%C3%B3n.dart';
+import 'package:proyecto_turismo/views/Informacion.dart';
 import 'package:proyecto_turismo/views/Migracion.dart';
 import 'package:proyecto_turismo/widgets/CardsItinerario.dart';
 import 'package:proyecto_turismo/widgets/DetallesItinerario.dart';
@@ -216,21 +216,22 @@ class _ItinerarioState extends State<Itinerario> {
               fontSize: 18,
             ),
             ...actividadesFiltradas.actividades.map((actividad) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 4.0, horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      Icon(Icons.check_circle_outline, color: Colors.green),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          actividad,
-                          style: const TextStyle(fontSize: 16),
-                        ),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 4.0, horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.check_circle_outline, color: Colors.green),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        actividad,
+                        style: const TextStyle(fontSize: 16),
                       ),
-                    ],
-                  ),
-                )),
+                    ),
+                  ],
+                ),
+              )
+            ),
             const SizedBox(height: 20),
             const Subtitulos(
               subtitulo: 'Recomendaciones',

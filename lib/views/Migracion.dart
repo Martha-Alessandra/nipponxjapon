@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
-import 'package:proyecto_turismo/views/Informaci%C3%B3n.dart';
+import 'package:proyecto_turismo/views/Informacion.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
  

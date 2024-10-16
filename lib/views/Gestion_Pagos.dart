@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proyecto_turismo/services/Firebase_selectImage.dart';
 import 'package:proyecto_turismo/services/firebase_uploadImage.dart';
-import 'package:proyecto_turismo/views/Informaci%C3%B3n.dart';
+import 'package:proyecto_turismo/views/Informacion.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:proyecto_turismo/views/Migracion.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
