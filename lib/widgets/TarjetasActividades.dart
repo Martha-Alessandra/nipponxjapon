@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
 class TarjetaActividades extends StatelessWidget{
-  final String etiqueta;
   final String imagen;
   final String nombre;
-  final String duracion;
+  final String dia;
 
   const TarjetaActividades({
     super.key,
-    required this.etiqueta,
     required this.imagen,
     required this.nombre,
-    required this.duracion
+    required this.dia
   });
 
   @override
   Widget build (BuildContext context){
     return SizedBox(
-      width: 230,
-      height: 310,
+      width: 235,
+      height: 320,
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
@@ -31,7 +29,7 @@ class TarjetaActividades extends StatelessWidget{
               children: [
                 SizedBox(
                   width: double.infinity,
-                  height: 200,
+                  height: 230,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(12),
@@ -43,25 +41,6 @@ class TarjetaActividades extends StatelessWidget{
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(4)
-                    ),
-                    child: Text(
-                      etiqueta,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  )
-                )
               ],
             ),
             Padding(
@@ -72,16 +51,16 @@ class TarjetaActividades extends StatelessWidget{
                   Text(
                     nombre,
                     style: const TextStyle(
-                      fontSize: 14,
-                      //fontWeight: FontWeight.bold
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    duracion,
+                    dia,
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600
+                      fontSize: 16,
+                      fontWeight: FontWeight.w100
                     ),
                   )
                 ],

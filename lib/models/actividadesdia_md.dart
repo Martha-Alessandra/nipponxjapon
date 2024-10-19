@@ -48,7 +48,7 @@ final List<ActividadPorDia> actividadesPorDia = [
   ),
   ActividadPorDia(
     dia: 'Día 3 ',
-    destino: 'Kamakura y Enoshima',
+    destino: 'Kamakura, Enoshima',
     descripcion: 'Visitas a Kamakura y Enoshima con paradas en templos y santuarios.',
     actividades: [
       'Autobús privado de Nippon X Japón',
@@ -79,7 +79,7 @@ final List<ActividadPorDia> actividadesPorDia = [
   ),
   ActividadPorDia(
     dia: 'Día 5',
-    destino: 'Disney Tokyo Sea / Disneyland Tokyo',
+    destino: 'Disney Tokyo Sea, Disneyland Tokyo',
     descripcion: 'Un día en uno de los parques temáticos de Disney en Tokyo.',
     actividades: [
       'Salida al parque de diversiones a las 6:30 AM',
@@ -136,7 +136,7 @@ final List<ActividadPorDia> actividadesPorDia = [
   ),
   ActividadPorDia(
     dia: 'Día 10',
-    destino: 'Nara y Osaka',
+    destino: 'Nara, Osaka',
     descripcion: 'Visitas a los sitios más emblemáticos de Nara y Osaka.',
     actividades: [
       'Autobús privado de Nippon X Japón',

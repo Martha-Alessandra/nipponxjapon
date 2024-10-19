@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 class Cardsitinerario extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
-  final IconData icono;
+  final String imagen;
+  final double widthimagen;
+  final double heightimagen;
 
   const Cardsitinerario({
     super.key,
     required this.onTap,
     required this.text,
-    required this.icono,
+    required this.imagen,
+    required this.widthimagen,
+    required this.heightimagen
   });
 
   @override
@@ -33,7 +37,11 @@ class Cardsitinerario extends StatelessWidget {
                   CircleAvatar(
                     radius: 25,
                     backgroundColor: Color(0xFFD9D9D9),
-                    child: Icon(icono, size: 30),
+                    child: Image.asset(
+                      imagen,
+                      width: widthimagen,
+                      height: heightimagen,
+                    ) //Icon(icono, size: 30),
                   ),
                   const SizedBox(height: 10,),
                   Text(

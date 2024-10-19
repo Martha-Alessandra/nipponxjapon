@@ -71,25 +71,49 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/logo.jpeg
     - assets/images/fondo.png
     - assets/images/usr.png
-    - assets/images/montefuji.png
-    - assets/images/montefuji2.jpg
-    - assets/images/towerjapan.jpg
-    - assets/images/astrid.png
-    - assets/images/paulina.png
-    - assets/images/tane.png
-    - assets/images/pedro.png
-    - assets/images/gumer.png
-    - assets/images/brandon.png
-    - assets/images/alejandro.png
-    - assets/images/ernesto.png
-    - assets/images/christian.png
-    - assets/images/luz.png
+    - assets/images/atracciones1.png
+    - assets/images/hotel.png
+    - assets/images/avion.png
+    - assets/images/usersphoto/astrid.png
+    - assets/images/usersphoto/paulina.png
+    - assets/images/usersphoto/tane.png
+    - assets/images/usersphoto/pedro.png
+    - assets/images/usersphoto/gumer.png
+    - assets/images/usersphoto/brandon.png
+    - assets/images/usersphoto/alejandro.png
+    - assets/images/usersphoto/ernesto.png
+    - assets/images/usersphoto/christian.png
+    - assets/images/usersphoto/luz.png
     - assets/images/RegistroNacional.png
     - assets/images/RegistroEstatal.png
     - assets/images/CertificadoLuis.png
     - assets/images/CertificadoDiana.jpg
+    - assets/images/actividades/Arashiyama.jpg
+    - assets/images/actividades/CascadaKegon.jpg
+    - assets/images/actividades/CastilloOsaka.jpg
+    - assets/images/actividades/DisneylandTokio.jpg
+    - assets/images/actividades/FushimiInariTaisha.jpg
+    - assets/images/actividades/HaseDeraTemple.jpg
+    - assets/images/actividades/Hiroshima.jpg
+    - assets/images/actividades/Kiyomizudera.jpg
+    - assets/images/actividades/MonumentoHackiko.jpg
+    - assets/images/actividades/NikkoTosho-gu.jpg
+    - assets/images/actividades/NishikiMarket.jpg
+    - assets/images/actividades/OshinoHakkaiTown.jpg
+    - assets/images/actividades/PabellónDorado.jpg
+    - assets/images/actividades/ParqueArakurayamaSengen.jpg
+    - assets/images/actividades/ParqueNara.jpg
+    - assets/images/actividades/SantuarioSensō-ji.jpg
+    - assets/images/actividades/SantuarioTsurugaokaHachiman-gu.jpg
+    - assets/images/actividades/TiendaNintendo.jpg
+    - assets/images/actividades/Tokio.jpg
+    - assets/images/actividades/UniversalStudios.jpg
+    - assets/images/actividades/YokohamaChinatown.jpg
+
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
