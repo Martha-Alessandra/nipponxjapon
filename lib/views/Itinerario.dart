@@ -11,8 +11,7 @@ import 'package:proyecto_turismo/views/VuelosView.dart';
 import 'package:proyecto_turismo/views/HospedajeView.dart';
 import 'package:proyecto_turismo/views/ActividadesView.dart';
 import 'package:proyecto_turismo/models/actividadesdia_md.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 
 
@@ -466,16 +465,22 @@ class _ItinerarioState extends State<Itinerario> {
               fontSize: 18,
             ),
             const SizedBox(height: 10),
-            CarouselSlider(
-              options: CarouselOptions(
+            Center(
+              child: SizedBox(
                 height: 340,
-                //enlargeCenterPage: true,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 4),
-                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-                viewportFraction: 0.51, // Mostrar dos tarjetas, ajustando el ancho de cada una
+                width: 380,
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return actividadesProgramadas[index];
+                  },
+                  itemCount: actividadesProgramadas.length,
+                  pagination: const SwiperPagination(),
+                  control: const SwiperControl(),
+                  autoplay: true,
+                  autoplayDelay: 3000,
+                  autoplayDisableOnInteraction: false,
+                ),
               ),
-              items: actividadesProgramadas,
             ),
             const SizedBox(height: 20),
           ],

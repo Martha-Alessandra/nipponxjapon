@@ -6,10 +6,10 @@ import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:proyecto_turismo/widgets/Divider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:proyecto_turismo/widgets/ReviewCard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
  
 class Informacion extends StatelessWidget {
  
@@ -25,6 +25,7 @@ class Informacion extends StatelessWidget {
  
   @override
   Widget build(BuildContext context) {
+
     final List<Widget> reviewCards = [
       const Reviewcard(
         avatarUrl: 'assets/images/usersphoto/astrid.png', // URL de avatar o imagen
@@ -278,15 +279,19 @@ class Informacion extends StatelessWidget {
                 ),
               ),
             ),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 220,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 4),
-                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
+            SizedBox(
+              height: 220,
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return reviewCards[index];
+                },
+                itemCount: reviewCards.length,
+                autoplay: true,
+                viewportFraction: 0.8,
+                scale: 0.9,
+                autoplayDelay: 4000,
+                duration: 1000,
               ),
-              items: reviewCards,
             ),
             const SizedBox(height: 8),
             const Divisor(),
