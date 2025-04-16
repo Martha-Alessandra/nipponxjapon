@@ -22,7 +22,7 @@ class Cardsitinerario extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: 120,
-        height: 110,
+        height: 128,
         child: AspectRatio(
           aspectRatio: 1,
           child: Card(
@@ -33,6 +33,7 @@ class Cardsitinerario extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
                     radius: 25,
@@ -48,8 +49,10 @@ class Cardsitinerario extends StatelessWidget {
                     text,
                     style: const TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
                     ),
+                    textAlign: TextAlign.center,
+                    
                   )
                 ],
               ),

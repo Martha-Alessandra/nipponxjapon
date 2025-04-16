@@ -34,12 +34,288 @@ class _HospedajeViewState extends State<HospedajeView> {
   Widget build(BuildContext context) {
     // Obtener hospedajes desde el servicio
     final List<Hospedaje> hospedajes = hospedajeService.obtenerHospedajes();
+    final filteredHospedajes = fechaSeleccionada != null
+        ? hospedajes.where((h) => h.fecha == fechaSeleccionada).toList()
+        : [];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Consulta de Hospedaje'),
+        title: const Text(
+          'Hospedajes',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: 'Rubik',
+          ),
+        ),
+        backgroundColor: const Color(0xFF272727),
+        shadowColor: Colors.grey,
+        iconTheme: const IconThemeData(
+          color: Color(0xFFFFFFFF),
+        ),
+        elevation: 0,
       ),
-      body: Padding(
+      body: Container(
+        color: const Color(0xFF121212),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+
+              //Selector de fechas
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Selecciona tu periodo:',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFD30000)
+                        ),
+                      ),
+                      const SizedBox(height: 12,),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          underline: const SizedBox(),
+                          hint: const Text('Periodo de viaje'),
+                          value: fechaSeleccionada,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              fechaSeleccionada = newValue;
+                            });
+                          },
+                          items: fechas.map((String fecha) {
+                            return DropdownMenuItem<String>(
+                              value: fecha,
+                              child: Text(
+                                fecha,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            );
+                          }).toList(),
+                        )
+                      )
+                    ],
+                  ), 
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              //Presentación de hospedajes
+              if (fechaSeleccionada == null)
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.search,
+                          size: 64,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Seleccione una fecha para ver\nlos hospedajes disponibles',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 16,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                )
+
+              else if (filteredHospedajes.isEmpty)
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'No hay hospedajes disponibles para este periodo',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 16,
+                      ),
+                    )
+                  ),
+                )
+              
+              else
+                Expanded(
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: filteredHospedajes.length,
+                    itemBuilder: (context, index) {
+                      final hospedaje = filteredHospedajes[index];
+                      return Card(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+                              //Nombre y raiting del hotel
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      hospedaje.nombreHotel,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: List.generate(5, (starIndex) {
+                                      return Icon(
+                                        starIndex < hospedaje.estrellas 
+                                            ? Icons.star 
+                                            : Icons.star_border,
+                                        color: const Color(0xFFD30000),
+                                        size: 20,
+                                      );
+                                    }),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 12),
+                              const Divider(height: 1),
+                              const SizedBox(height: 12),
+
+                              // Detalles
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.calendar_today,
+                                    size: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    'Periodo: ',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                  Text(
+                                    hospedaje.fecha,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.people,
+                                    size: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    'Ocupación: ',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                  Text(
+                                    hospedaje.ocupacion,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.hotel,
+                                    size: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    'Noches: ',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                  Text(
+                                    hospedaje.nochescant,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+
+                              //Botón
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFFD30000),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                  ),
+                                  onPressed: () {
+
+                                  },
+                                  child: const Text(
+                                    'Ver detalles',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),  
+                )
+            ],
+          ),
+        ),
+      ) 
+      /*Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +391,7 @@ class _HospedajeViewState extends State<HospedajeView> {
               ),
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

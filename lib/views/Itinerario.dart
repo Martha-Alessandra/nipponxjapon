@@ -12,7 +12,9 @@ import 'package:proyecto_turismo/views/HospedajeView.dart';
 import 'package:proyecto_turismo/views/ActividadesView.dart';
 import 'package:proyecto_turismo/models/actividadesdia_md.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
-
+import 'package:proyecto_turismo/widgets/DestinoCarruselState.dart';
+import 'package:proyecto_turismo/widgets/DescripcionDestino.dart';
+import 'package:proyecto_turismo/widgets/ActividadesPlaneadas.dart';
 
 
 class Itinerario extends StatefulWidget {
@@ -25,6 +27,7 @@ class Itinerario extends StatefulWidget {
 class _ItinerarioState extends State<Itinerario> {
   // DIA seleccionado por el usuario
   String? diaSeleccionado;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -212,10 +215,6 @@ class _ItinerarioState extends State<Itinerario> {
                         'Carlos Lopez',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
-                      Text(
-                        'Próximo viajero',
-                        style: TextStyle(fontSize: 10),
-                      ),
                     ],
                   ),
                 ],
@@ -264,7 +263,7 @@ class _ItinerarioState extends State<Itinerario> {
                       ),
                     );
                   },
-                  text: 'Actividades',
+                  text: 'Actividades por Ciudad',
                   imagen: 'assets/images/atracciones1.png',
                   widthimagen: 40,
                   heightimagen: 40,
@@ -277,7 +276,8 @@ class _ItinerarioState extends State<Itinerario> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
-                  const Padding(
+                  const SizedBox(width: 250),
+                  /*const Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       'Actividades \ndel DIA', 
@@ -289,64 +289,68 @@ class _ItinerarioState extends State<Itinerario> {
                         fontFamily: 'Lilita One',
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 35),
-                    child: Text(
-                      'Seleccionar DIA:',
-                      style: TextStyle(
-                        fontSize: 16
-                      ),
-                    ),
-                  ),
+                  ),*/
                   //const Icon(Icons.landscape, color: Colors.black54),
-                  const SizedBox(width: 10),
+                  /// Selector de días
                   Container(
-                    width: 100,
+                    width: 210,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: Colors.black54),
                       color: const Color(0xFFFFFFFF)
                     ),
-                    child: DropdownButton<String>(
-                      isExpanded: true,
-                      dropdownColor: const Color(0XFFFFFFFF),
+                    child: DropdownButtonFormField<String>(
                       value: diaSeleccionado,
-                      hint: const Text(
-                        "DIA",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFFD9D9D9)
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white, // Color de fondo
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
                         ),
                       ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          diaSeleccionado = newValue;
-                        });
-                      },
+                      dropdownColor: Colors.white,
+                      hint: const Text('Selecciona un día'),
                       items: actividadesPorDia.map((actividad) {
                         return DropdownMenuItem<String>(
                           value: actividad.dia,
                           child: Text(
                             actividad.dia,
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         );
                       }).toList(),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                      underline: const SizedBox(),
-                      borderRadius: BorderRadius.circular(10), // Eliminar la línea de abajo del dropdown
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          diaSeleccionado = newValue;
+                        });
+                      },
                     ),
                   ),
                 ],
               ),
             ),
             const Divisor(),
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                'Destinos',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                )
+              ),
+            ),
             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: DestinoCarrusel(
+                images: actividadesFiltradas.images,
+                destino: actividadesFiltradas.destino,
+              ),
+            ),
+            /*Padding(
               padding: const EdgeInsets.only(
                 right: 35,
                 top: 3,
@@ -386,9 +390,24 @@ class _ItinerarioState extends State<Itinerario> {
                   )
                 ],
               )
+            ),*/
+            //const Divisor(),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, top: 8, bottom: 8),
+              child: Text(
+                'Descripción',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            const Divisor(),
-            Padding(
+            // Nuevo widget de descripción
+            DescripcionHotel(
+              descripcion: actividadesFiltradas.descripcion,
+              icono: '🗺️', // Puedes cambiar el emoji según prefieras
+            ),
+            /*Padding(
               padding: const EdgeInsets.only(
                 right: 35,
                 top: 3,
@@ -430,9 +449,12 @@ class _ItinerarioState extends State<Itinerario> {
                   ),
                 ] 
               )
-            ),
+            ),*/
             const Divisor(),
-            const Subtitulos(
+            ActividadesPlaneadasSection(
+              actividades: actividadesFiltradas.actividades,
+            ),
+            /*const Subtitulos(
               subtitulo: 'Actividades Planeadas',
               fontSize: 18,
             ),
@@ -458,7 +480,7 @@ class _ItinerarioState extends State<Itinerario> {
                   ],
                 ),
               )
-            ),
+            ),*/
             const SizedBox(height: 20),
             const Subtitulos(
               subtitulo: 'Actividades Programadas',
@@ -468,14 +490,18 @@ class _ItinerarioState extends State<Itinerario> {
             Center(
               child: SizedBox(
                 height: 340,
-                width: 380,
+                width: 450,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
                     return actividadesProgramadas[index];
                   },
                   itemCount: actividadesProgramadas.length,
                   pagination: const SwiperPagination(),
-                  control: const SwiperControl(),
+                  control: const SwiperControl(
+                    color: Colors.grey,
+                    size: 35,
+                    padding: EdgeInsets.symmetric(horizontal: 10)
+                  ),
                   autoplay: true,
                   autoplayDelay: 3000,
                   autoplayDisableOnInteraction: false,

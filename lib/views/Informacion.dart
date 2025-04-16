@@ -105,7 +105,7 @@ class Informacion extends StatelessWidget {
         title: const Text(
           'Sobre Nosotros', 
           style: TextStyle(
-            color: Color(0xFFD30000),
+            color: Color(0xFFFFFFFF),
             fontSize: 30,
             fontFamily: 'Rubik',
             fontWeight: FontWeight.bold,
@@ -172,7 +172,7 @@ class Informacion extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0xFFD30000),
                   fontSize: 30,
-                  fontFamily: 'Lilita One',
+                  //fontFamily: 'Lilita One',
                   fontWeight: FontWeight.bold,
                 )
               ),

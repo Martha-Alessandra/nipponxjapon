@@ -42,7 +42,7 @@ dependencies:
   firebase_storage: ^12.2.0
   flutter_map: ^5.0.0
   latlong2: ^0.9.0
-  carousel_slider: ^4.2.1 
+  carousel_slider: ^4.2.1
   url_launcher: ^6.0.20
   flutter_swiper_view: ^1.1.6
 
@@ -91,6 +91,7 @@ flutter:
     - assets/images/RegistroEstatal.png
     - assets/images/CertificadoLuis.png
     - assets/images/CertificadoDiana.jpg
+
     - assets/images/actividades/Arashiyama.jpg
     - assets/images/actividades/CascadaKegon.jpg
     - assets/images/actividades/CastilloOsaka.jpg
@@ -112,6 +113,29 @@ flutter:
     - assets/images/actividades/Tokio.jpg
     - assets/images/actividades/UniversalStudios.jpg
     - assets/images/actividades/YokohamaChinatown.jpg
+
+
+    - assets/images/destinos/Arashiyama.jpg
+    - assets/images/destinos/Aeropuerto.jpg
+    - assets/images/destinos/Asakusa.jpg
+    - assets/images/destinos/DisneylandTokio.jpg
+    - assets/images/destinos/DisneyTokioSea.jpg
+    - assets/images/destinos/Enoshima.jpg
+    - assets/images/destinos/FushimiInari.jpg
+    - assets/images/destinos/Harajuku.jpg
+    - assets/images/destinos/Kamakura.jpg
+    - assets/images/destinos/Kyoto.jpg
+    - assets/images/destinos/Kinkakuji.jpg
+    - assets/images/destinos/kiyomizudera.jpg
+    - assets/images/destinos/MonteFuji.jpg
+    - assets/images/destinos/Nara.jpg
+    - assets/images/destinos/Nikko.jpg
+    - assets/images/destinos/Osaka.jpg
+    - assets/images/destinos/Shibuya.jpg
+    - assets/images/destinos/Shinjuku.jpg
+    - assets/images/destinos/Tokio.jpg
+    - assets/images/destinos/UniversalStudio.jpg
+    - assets/images/destinos/yokohama.jpg
 
     
 
