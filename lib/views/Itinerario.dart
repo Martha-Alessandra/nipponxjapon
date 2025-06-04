@@ -275,9 +275,54 @@ class _ItinerarioState extends State<Itinerario> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end, // Alinea todo a la derecha
+                children: [
+                  Container(
+                    width: 210,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.black54),
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                    child: DropdownButtonFormField<String>(
+                      value: diaSeleccionado,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      dropdownColor: Colors.white,
+                      hint: const Text('Selecciona un día'),
+                      items: actividadesPorDia.map((actividad) {
+                        return DropdownMenuItem<String>(
+                          value: actividad.dia,
+                          child: Text(
+                            actividad.dia,
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          diaSeleccionado = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            /*Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
                 children: [
                   const SizedBox(width: 250),
-                  /*const Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       'Actividades \ndel DIA', 
@@ -289,7 +334,7 @@ class _ItinerarioState extends State<Itinerario> {
                         fontFamily: 'Lilita One',
                       ),
                     ),
-                  ),*/
+                  ),
                   //const Icon(Icons.landscape, color: Colors.black54),
                   /// Selector de días
                   Container(
@@ -331,7 +376,7 @@ class _ItinerarioState extends State<Itinerario> {
                   ),
                 ],
               ),
-            ),
+            ),*/
             const Divisor(),
             const Padding(
               padding: EdgeInsets.only(left: 20),
