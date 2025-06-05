@@ -10,6 +10,9 @@ class Menudesplegable extends StatelessWidget {
   final IconData iconoTercerMenu;
   final String textoTercerMenu;
   final void Function()? TercerFuncionMenu;
+  final IconData iconoCuartoMenu;
+  final String textoCuartoMenu;
+  final void Function()? CuartaFuncionMenu;
 
   const Menudesplegable({
     super.key,
@@ -22,6 +25,9 @@ class Menudesplegable extends StatelessWidget {
     required this.iconoTercerMenu,
     required this.textoTercerMenu,
     required this.TercerFuncionMenu,
+    required this.iconoCuartoMenu,
+    required this.textoCuartoMenu,
+    required this.CuartaFuncionMenu,
   });
  
   @override
@@ -32,7 +38,7 @@ class Menudesplegable extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget> [
           const SizedBox(
-            height: 100,
+            height: 150,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -40,7 +46,7 @@ class Menudesplegable extends StatelessWidget {
                   padding: EdgeInsets.only(
                     left: 5, 
                     right: 5,
-                    top: 30
+                    top: 100
                   ),
                   child: Text(
                     'NIPPON X JAPON',
@@ -107,6 +113,22 @@ class Menudesplegable extends StatelessWidget {
                 ),
               ),
               onTap: TercerFuncionMenu,
+            )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(
+                iconoCuartoMenu,
+                color:const Color(0xFFFFFFFF),
+              ),
+              title: Text(
+                textoCuartoMenu,
+                style: const TextStyle(
+                  color: Color(0xFFFFFFFF),
+                ),
+              ),
+              onTap: CuartaFuncionMenu,
             )
           ),
         ],

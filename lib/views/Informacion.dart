@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
-import 'package:proyecto_turismo/views/Migracion.dart';
+import 'package:proyecto_turismo/views/Guia_Actividades.dart';
+import 'package:proyecto_turismo/views/Registros_Turisticos.dart';
 import 'package:proyecto_turismo/widgets/DatosRegistroN.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -105,7 +106,7 @@ class Informacion extends StatelessWidget {
         title: const Text(
           'Sobre Nosotros', 
           style: TextStyle(
-            color: Color(0xFFFFFFFF),
+            color: Color(0xFFD30000),
             fontSize: 30,
             fontFamily: 'Rubik',
             fontWeight: FontWeight.bold,
@@ -146,13 +147,23 @@ class Informacion extends StatelessWidget {
             )
           );
         },
-        iconoTercerMenu: Icons.edit_document, 
-        textoTercerMenu: 'Migración y Pasaporte', 
-        TercerFuncionMenu: (){
+        iconoTercerMenu: Icons.map,
+        textoTercerMenu: 'Explora el Itinerario',
+        TercerFuncionMenu: () {
           Navigator.push(
-            context, 
+            context,
             MaterialPageRoute(
-              builder: (context) => const Migracion()
+              builder: (context) => const ExploraItinerario()
+            )
+          );
+        },
+        iconoCuartoMenu: Icons.library_books_outlined,
+        textoCuartoMenu: 'Registros Turísticos',
+        CuartaFuncionMenu: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RegistrosTuristicos()
             )
           );
         },
@@ -172,7 +183,7 @@ class Informacion extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0xFFD30000),
                   fontSize: 30,
-                  //fontFamily: 'Lilita One',
+                  fontFamily: 'Rubik',
                   fontWeight: FontWeight.bold,
                 )
               ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_turismo/views/Registros_Turisticos.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:proyecto_turismo/views/Informacion.dart';
-import 'package:proyecto_turismo/views/Migracion.dart';
+import 'package:proyecto_turismo/views/Guia_Actividades.dart';
 import 'package:proyecto_turismo/widgets/CardsItinerario.dart';
 import 'package:proyecto_turismo/widgets/Divider.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:proyecto_turismo/widgets/Subtitles.dart';
 import 'package:proyecto_turismo/widgets/TarjetasActividades.dart';
-import 'package:proyecto_turismo/views/VuelosView.dart';
 import 'package:proyecto_turismo/views/HospedajeView.dart';
 import 'package:proyecto_turismo/views/ActividadesView.dart';
 import 'package:proyecto_turismo/models/actividadesdia_md.dart';
@@ -180,11 +181,11 @@ class _ItinerarioState extends State<Itinerario> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const GestionPagos()));
         },
-        iconoSegundoMenu: Icons.edit_document,
-        textoSegundoMenu: 'Migración y Pasaporte',
+        iconoSegundoMenu: Icons.map,
+        textoSegundoMenu: 'Explora el Itinerario',
         SegundoFuncionMenu: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Migracion()));
+              MaterialPageRoute(builder: (context) => const ExploraItinerario()));
         },
         iconoTercerMenu: Icons.people,
         textoTercerMenu: 'Sobre Nosotros',
@@ -192,49 +193,46 @@ class _ItinerarioState extends State<Itinerario> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const Informacion()));
         },
+        iconoCuartoMenu: Icons.library_books_outlined,
+        textoCuartoMenu: 'Registros Turísticos',
+        CuartaFuncionMenu: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const RegistrosTuristicos()));
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    foregroundColor: Color(0xFF7D7D7D),
-                    //foregroundImage: AssetImage('assets/images/usr.png'),
-                  ),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Carlos Lopez',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ],
+            const Center(
+              child: Text(
+                '¡Bienvenidos!',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Rubik',
+                  color: Color(0xFFD30000),
+                ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Cardsitinerario(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const VuelosView(),
-                      ),
-                    );
+                  onTap: () async {
+                    const url='https://www.google.com/?hl=es-419';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('No se pudo abrir el enlace')),
+                      );
+                    }
                   },
-                  text: 'Vuelos',
-                  imagen: 'assets/images/avion.png',
+                  text: 'Migración y Pasaporte',
+                  imagen: 'assets/images/migracion.png',
                   widthimagen: 35,
                   heightimagen: 35,
                   //icono: Icons.airplanemode_active,
@@ -273,9 +271,9 @@ class _ItinerarioState extends State<Itinerario> {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 45.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end, // Alinea todo a la derecha
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
                     width: 210,

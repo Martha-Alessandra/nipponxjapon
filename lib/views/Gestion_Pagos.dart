@@ -5,7 +5,8 @@ import 'package:proyecto_turismo/services/Firebase_selectImage.dart';
 import 'package:proyecto_turismo/services/firebase_uploadImage.dart';
 import 'package:proyecto_turismo/views/Informacion.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
-import 'package:proyecto_turismo/views/Migracion.dart';
+import 'package:proyecto_turismo/views/Guia_Actividades.dart';
+import 'package:proyecto_turismo/views/Registros_Turisticos.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:proyecto_turismo/widgets/Buttons_Pagos.dart';
 import 'package:proyecto_turismo/widgets/Subtitles.dart';
@@ -91,13 +92,13 @@ class _GestionPagosState extends State<GestionPagos> {
             )
           );
         },
-        iconoSegundoMenu: Icons.edit_document, 
-        textoSegundoMenu: 'Migración y Pasaporte', 
-        SegundoFuncionMenu: (){
+        iconoSegundoMenu: Icons.map,
+        textoSegundoMenu: 'Explora Itinerario',
+        SegundoFuncionMenu: () {
           Navigator.push(
-            context, 
+            context,
             MaterialPageRoute(
-              builder: (context) => const Migracion()
+              builder: (context) => const ExploraItinerario()
             )
           );
         },
@@ -111,45 +112,21 @@ class _GestionPagosState extends State<GestionPagos> {
             )
           );
         },
+        iconoCuartoMenu: Icons.library_books_outlined,
+        textoCuartoMenu: 'Registros Turísticos',
+        CuartaFuncionMenu: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RegistrosTuristicos()
+            )
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20,),
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-              ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    foregroundColor: Color(0xFF7D7D7D),
-                    //foregroundImage: AssetImage('assets/images/usr.png'),
-                  ),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Carlos Lopez',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14
-                        ),
-                      ),
-                      Text(
-                        'Próximo viajero',
-                        style: TextStyle(
-                          fontSize: 10
-                        ),  
-                      )
-                    ],
-                  )
-                ],
-              )
-            ),
             const SizedBox(height: 20),
             const Subtitulos(
               subtitulo: 'Detalles de Pago',

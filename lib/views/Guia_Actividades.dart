@@ -4,16 +4,16 @@ import 'package:proyecto_turismo/views/Informacion.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
  
-class Migracion extends StatelessWidget {
+class ExploraItinerario extends StatelessWidget {
  
-const Migracion({Key? key}) : super(key: key);
+const ExploraItinerario({Key? key}) : super(key: key);
  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Migración y Pasaporte', 
+          'Guía de Actividades', 
           style: TextStyle(
             color: Color(0xFFD30000),
             fontSize: 30,
@@ -63,6 +63,16 @@ const Migracion({Key? key}) : super(key: key);
             context, 
             MaterialPageRoute(
               builder: (context) => const Informacion()
+            )
+          );
+        },
+        iconoCuartoMenu: Icons.library_books_outlined,
+        textoCuartoMenu: 'Registros Turísticos',
+        CuartaFuncionMenu: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Itinerario()
             )
           );
         },
