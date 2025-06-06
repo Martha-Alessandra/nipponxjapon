@@ -2,27 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_turismo/views/Itinerario.dart';
 import 'package:proyecto_turismo/views/Guia_Actividades.dart';
 import 'package:proyecto_turismo/views/Registros_Turisticos.dart';
-import 'package:proyecto_turismo/widgets/DatosRegistroN.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:proyecto_turismo/widgets/Divider.dart';
 import 'package:proyecto_turismo/widgets/ReviewCard.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
  
 class Informacion extends StatelessWidget {
  
   const Informacion({Key? key}) : super(key: key);
-
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
  
   @override
   Widget build(BuildContext context) {
@@ -179,7 +169,7 @@ class Informacion extends StatelessWidget {
                 bottom: 6
               ),
               child: Text(
-                'NIPPON X JAPON',
+                'Nippon X Japon',
                 style: TextStyle(
                   color: Color(0xFFD30000),
                   fontSize: 30,
@@ -188,28 +178,69 @@ class Informacion extends StatelessWidget {
                 )
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.05),
+                    spreadRadius: 2,
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  )
+                ]
               ),
-              child: RichText(
-                text: const TextSpan(
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+              child: IntrinsicHeight(
+                child: Row(
                   children: [
-                    TextSpan(
-                      text: 'Queremos ser parte de uno de los mejores viajes de tu vida y brindarte el mejor soporte que podamos brindarte.'
+                    /*Container(
+                      width: 4,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD30000),
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(8)
+                        )
+                      ),
+                    ),*/
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Expanded(
+                          child: RichText(
+                            text: const TextSpan(
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'Queremos ser parte de uno de los mejores viajes de tu vida y brindarte el mejor soporte que podamos brindarte.'
+                                ),
+                                TextSpan(
+                                  text: 'Te esperamos en Nippon x Japón.',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold
+                                  )
+                                )
+                              ] 
+                            )
+                          )
+                        )
+                      ),
                     ),
-                    TextSpan(
-                      text: 'Te esperamos en Nippon x Japón.',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold
-                      )
-                    )
-                  ]
-                )
-              )
+                    /*Container(
+                      width: 4,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD30000),
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(8)
+                        )
+                      ),
+                    ),*/
+                  ],
+                ),
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(
@@ -227,7 +258,7 @@ class Informacion extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+                horizontal: 30,
                 vertical: 5
               ),
               child: ClipRRect(
@@ -306,145 +337,6 @@ class Informacion extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Divisor(),
-            const Center(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  bottom: 5,
-                ),
-                child: Text(
-                  'Registro de Turismo',
-                  style: TextStyle(
-                    color: Color(0xFFD30000),
-                    fontSize: 32,
-                    fontFamily: 'Lilita One',
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 5,
-                    ),
-                    child: Text(
-                      'DATOS PARA CONSULTA EN EL REGISTRO \nNACIONAL DE TURISMO:',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  const Datosregistro(
-                    encabezado: 'Nombre: ', 
-                    contenido: 'Nippon x japon'
-                  ),
-                  const Datosregistro(
-                    encabezado: 'Estado: ', 
-                    contenido: 'GUANAJUATO'
-                  ),
-                  const Datosregistro(
-                    encabezado: 'Municipio: ', 
-                    contenido: 'LEON'
-                  ),
-                  const Datosregistro(
-                    encabezado: 'RNT: ', 
-                    contenido: '04110200912'
-                  ),
-                  const Datosregistro(
-                    encabezado: 'Número de Trámite: ', 
-                    contenido: '2EE5D'
-                  ),
-                  const Datosregistro(
-                    encabezado: 'Clave de Control: ', 
-                    contenido: '04I0BA014'
-                  ),
-                  const SizedBox(height: 10,),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        _launchURL('https://rnt.sectur.gob.mx/');
-                      },
-                      child: Image.asset(
-                        'assets/images/RegistroNacional.png',
-                        height: 310,
-                        width: double.infinity,
-                      )
-                    )
-                  ),
-                  const SizedBox(height: 10,),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        _launchURL('https://registroestataldeturismo.guanajuato.gob.mx/consulta-ciudadana/ver/RET022052963');
-                      },
-                      child: Image.asset(
-                        'assets/images/RegistroEstatal.png',
-                        height: 310,
-                        width: double.infinity,
-                      )
-                    )
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 3),
-              child: Divisor(),
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      bottom: 5,
-                    ),
-                    child: Text(
-                      'ESTAMOS CERTIFICADOS COMO \nGUIAS JNTO',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontFamily: 'Lilita One',
-                        color: Color(0xFFD30000)
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    child: Text(
-                      'Esta certificación es avalda por la \nOficina Nacional de Turismo de Japón',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Image.asset(
-                      'assets/images/CertificadoLuis.png',
-                      height: 310,
-                      width: double.infinity,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Image.asset(
-                      'assets/images/CertificadoDiana.jpg',
-                      height: 310,
-                      width: double.infinity,
-                    ),
-                  ),
-                ],
-              )
-            )
             //const SizedBox(height: 200),
           ],
         )         

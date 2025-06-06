@@ -205,14 +205,24 @@ class _ItinerarioState extends State<Itinerario> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                '¡Bienvenidos!',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Rubik',
-                  color: Color(0xFFD30000),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color: Color(0xFFD30000),
+                      width: 4,
+                    )
+                  )
+                ),
+                padding: const EdgeInsets.only(left: 10),
+                child: const Text(
+                  'ようこそ\nBienvenidos a su itinerario',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black
+                  ),
                 ),
               ),
             ),
