@@ -92,6 +92,7 @@ class Informacion extends StatelessWidget {
 
 
     return Scaffold(
+      backgroundColor: const Color(0xFF272727), // Fondo negro principal
       appBar: AppBar(
         title: const Text(
           'Sobre Nosotros', 
@@ -179,7 +180,7 @@ class Informacion extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 22),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: Colors.white,
@@ -211,6 +212,7 @@ class Informacion extends StatelessWidget {
                           child: RichText(
                             text: const TextSpan(
                               style: TextStyle(
+                                color: Colors.black,
                                 fontSize: 16,
                               ),
                               children: [
@@ -219,11 +221,14 @@ class Informacion extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text: 'Te esperamos en Nippon x Japón.',
+                                ),
+                                TextSpan(
+                                  text: '"Los sueños no están para ser cumplidos. Están para ser vividos."',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold
-                                  )
-                                )
-                              ] 
+                                  ),
+                                ),
+                              ]
                             )
                           )
                         )
@@ -252,7 +257,8 @@ class Informacion extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0xFFD30000),
                   fontSize: 25,
-                  fontFamily: 'Lilita One',
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -301,6 +307,7 @@ class Informacion extends StatelessWidget {
               child: Text(
                 'Blvd. Adolfo López Mateos Fracc, Julián de Obregón 3401, León, Guanajuato',
                 style: TextStyle(
+                  color: Colors.white,
                   fontSize: 14,
                   fontFamily: 'Rubik',
                 ),
@@ -317,7 +324,8 @@ class Informacion extends StatelessWidget {
                 style: TextStyle(
                   color: Color(0xFFD30000),
                   fontSize: 28,
-                  fontFamily: 'Lilita One',
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

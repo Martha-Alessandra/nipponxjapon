@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_turismo/views/Registros_Turisticos.dart';
+import 'package:proyecto_turismo/views/RecomendacionesView.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
 import 'package:proyecto_turismo/views/Informacion.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:proyecto_turismo/widgets/DestinoCarruselState.dart';
 import 'package:proyecto_turismo/widgets/DescripcionDestino.dart';
 import 'package:proyecto_turismo/widgets/ActividadesPlaneadas.dart';
+
 
 
 class Itinerario extends StatefulWidget {
@@ -199,6 +201,9 @@ class _ItinerarioState extends State<Itinerario> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const RegistrosTuristicos()));
         },
+
+
+
       ),
       body: SingleChildScrollView(
         child: Column(

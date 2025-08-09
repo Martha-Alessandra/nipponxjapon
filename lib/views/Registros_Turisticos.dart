@@ -7,6 +7,7 @@ import 'package:proyecto_turismo/widgets/DatosRegistroN.dart';
 import 'package:proyecto_turismo/widgets/Divider.dart';
 import 'package:proyecto_turismo/widgets/MenuDesplegable.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:proyecto_turismo/views/RecomendacionesView.dart';
 
 class RegistrosTuristicos extends StatelessWidget {
 
@@ -104,15 +105,6 @@ class RegistrosTuristicos extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const Text(
-                'Registro de Turismo',
-                style: const TextStyle(
-                  color: Color(0xFFD30000),
-                  fontSize: 32,
-                  fontFamily: 'Lilita One',
-                  fontWeight: FontWeight.bold
-                ),
-              ),
               const SizedBox(height: 20),
 
               CardInfo(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:proyecto_turismo/views/Login.dart';
 /*import 'package:proyecto_turismo/views/ActividadesView.dart';
 import 'package:proyecto_turismo/views/HospedajeView.dart';
 import 'package:proyecto_turismo/views/Informacion.dart';*/
