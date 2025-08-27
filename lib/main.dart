@@ -6,12 +6,12 @@ import 'package:proyecto_turismo/views/HospedajeView.dart';
 import 'package:proyecto_turismo/views/Informacion.dart';*/
 import 'firebase_options.dart';
 /*import 'package:proyecto_turismo/views/Login_Pruebas.dart';
-import 'package:proyecto_turismo/models/user.dart';
+import 'package:proyecto_turismo/models/user.dart';*/
 import 'package:proyecto_turismo/views/Login.dart';
-import 'package:proyecto_turismo/views/Registro.dart';
+/*import 'package:proyecto_turismo/views/Registro.dart';
 import 'package:proyecto_turismo/views/users.dart';
-import 'package:proyecto_turismo/views/Gestion_Pagos.dart';*/
-import 'package:proyecto_turismo/views/Itinerario.dart';
+import 'package:proyecto_turismo/views/Gestion_Pagos.dart';
+import 'package:proyecto_turismo/views/Itinerario.dart';*/
 
 
 void main() async {
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),*/
-      home: Itinerario(),
+      home: Login(),
     );
   }
 }
